@@ -11,7 +11,7 @@ class RewriteServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->royalcms->bindShared('rewrite', function($royalcms)
+		$this->royalcms->singleton('rewrite', function($royalcms)
 		{
 			return new RewriteQuery();
 		});
