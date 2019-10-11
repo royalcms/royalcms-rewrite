@@ -1,4 +1,6 @@
-<?php namespace Royalcms\Component\Rewrite;
+<?php
+
+namespace Royalcms\Component\Rewrite;
 /**
  * Rewrite API: RC_Rewrite class
  *
@@ -6,27 +8,6 @@
  * @subpackage Rewrite
  * @since 3.10.0
  */
-
-/**
- * Endpoint Mask for default, which is nothing.
- *
- * @since 3.10.0
- */
-define('EP_NONE', 0);
-
-/**
- * Endpoint Mask for Permalink.
- *
- * @since 3.10.0
-*/
-define('EP_PERMALINK', 1);
-
-/**
- * Endpoint Mask for root.
- *
- * @since 3.10.0
- */
-define('EP_ROOT', 64);
 
 /**
  * Core class used to implement a rewrite component API.
@@ -414,7 +395,7 @@ class Rewrite {
 	 *                                    Default true.
 	 * @return array Rewrite rule list.
 	 */
-	public function generate_rewrite_rules($permalink_structure, $ep_mask = EP_NONE, $walk_dirs = true, $endpoints = true) {
+	public function generate_rewrite_rules($permalink_structure, $ep_mask = EndpointMaskEnum::EP_NONE, $walk_dirs = true, $endpoints = true) {
 		// Build up an array of endpoint regexes to append => queries to append.
 		if ( $endpoints ) {
 			$ep_query_append = array ();
@@ -487,7 +468,7 @@ class Rewrite {
 			$query = ( ! empty( $num_toks ) && isset( $queries[$num_toks - 1] ) ) ? $queries[$num_toks - 1] : '';
 
 			// Set up $ep_mask_specific which is used to match more specific URL types.
-			$ep_mask_specific = EP_NONE;
+			$ep_mask_specific = EndpointMaskEnum::EP_NONE;
 
 			// Start creating the array of rewrites for this dir.
 			$rewrite = array();
@@ -539,7 +520,7 @@ class Rewrite {
 	 * @return array
 	 */
 	public function generate_rewrite_rule($permalink_structure, $walk_dirs = false) {
-		return $this->generate_rewrite_rules($permalink_structure, EP_NONE, false, false, false, $walk_dirs);
+		return $this->generate_rewrite_rules($permalink_structure, EndpointMaskEnum::EP_NONE, false, false, false, $walk_dirs);
 	}
 
 	/**
@@ -577,7 +558,7 @@ class Rewrite {
 		);
 
 		// Root-level rewrite rules.
-		$root_rewrite = $this->generate_rewrite_rules($this->root . '/', EP_ROOT);
+		$root_rewrite = $this->generate_rewrite_rules($this->root . '/', EndpointMaskEnum::EP_ROOT);
 
 		/**
 		 * Filter rewrite rules used for root-level archives.
@@ -932,7 +913,7 @@ class Rewrite {
 
 		$defaults = array(
 			'with_front' => true,
-			'ep_mask' => EP_NONE,
+			'ep_mask' => EndpointMaskEnum::EP_NONE,
 			'paged' => true,
 			'feed' => true,
 			'forcomments' => false,

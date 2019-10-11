@@ -46,6 +46,7 @@ class RewriteServiceProvider extends ServiceProvider {
             $dir . "/RewriteQuery.php",
             $dir . "/Rewrite.php",
             $dir . "/MatchesMapRegex.php",
+            $dir . "/EndpointMaskEnum.php",
             $dir . "/RewriteServiceProvider.php",
         ];
     }
