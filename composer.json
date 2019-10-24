@@ -26,6 +26,14 @@
     "extra": {
         "branch-alias": {
             "dev-master": "5.0-dev"
+        },
+        "royalcms": {
+            "providers": [
+                "Royalcms\\Component\\Rewrite\\RewriteServiceProvider"
+            ],
+            "aliases": {
+                "RC_Rewrite": "Royalcms\\Component\\Rewrite\\Facades\\Rewrite"
+            }
         }
     },
     "minimum-stability": "dev"
